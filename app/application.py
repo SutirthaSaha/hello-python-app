@@ -1,3 +1,5 @@
+import time
+
 from flask import Flask
 from prometheus_client import start_http_server, Summary, Gauge, Counter
 from gevent.pywsgi import WSGIServer
@@ -10,6 +12,7 @@ COUNT_OF_REQUESTS = Counter('request_count', 'Total number of requests')
 
 @app.route("/")
 def hello():
+    time.sleep(20)
     COUNT_OF_REQUESTS.inc()
     return "Hello, World!"
 

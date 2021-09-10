@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: hello-app
+  labels:
+    role: observable
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      name: hello-app
+  endpoints:
+  - port: metrics
+    path: /
