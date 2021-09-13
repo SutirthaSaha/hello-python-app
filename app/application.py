@@ -12,7 +12,6 @@ COUNT_OF_REQUESTS = Counter('request_count', 'Total number of requests')
 
 @app.route("/")
 def hello():
-    time.sleep(20)
     COUNT_OF_REQUESTS.inc()
     return "Hello, World!"
 

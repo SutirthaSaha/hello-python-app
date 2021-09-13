@@ -6,7 +6,7 @@ metadata:
 data:
   config.yaml: |
     rules:
-    - seriesQuery: 'request_count'
+    - seriesQuery: 'http_requests_total'
       resources:
         overrides:
           kubernetes_namespace: {resource: "namespace"}
@@ -14,4 +14,4 @@ data:
       name:
         matches: "^(.*)_total"
         as: "${1}_per_second"
-      metricsQuery: 'sum(rate(request_count[2m])) by (job)'
+      metricsQuery: 'sum(rate(<<.Series>>[2m])) by (<<.GroupBy>>)'
